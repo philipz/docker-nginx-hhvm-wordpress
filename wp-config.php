@@ -111,4 +111,3 @@ if ( count( $plugins ) === 0 ) {
     }
   }
 }
-define('WP_MEMORY_LIMIT','64M');
