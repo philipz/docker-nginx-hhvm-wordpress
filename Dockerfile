@@ -45,6 +45,8 @@ ADD hhvm.sh /etc/service/hhvm/run
 
 RUN sudo /usr/share/hhvm/install_fastcgi.sh
 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Define mountable directories.
 VOLUME ["/usr/share/nginx/www"]
 
