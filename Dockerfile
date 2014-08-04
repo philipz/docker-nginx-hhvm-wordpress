@@ -48,7 +48,7 @@ RUN sudo /usr/share/hhvm/install_fastcgi.sh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Define mountable directories.
-VOLUME ["/usr/share/nginx/www"]
+VOLUME ["/usr/share/nginx/www","/var/log/nginx/"]
 
 # private expose
 EXPOSE 80
