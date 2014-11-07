@@ -9,4 +9,4 @@ docker-nginx-hhvm-wordpress
 ##How to use
 
     docker run -d --name db_1 -e "MYSQL_DATABASE=wordpress" -e "MYSQL_ROOT_PASSWORD=coscup_z>b" -p 3306:3306 ctlc/mysql
-    docker run -d --name web_1 --link db_1:db_1 -e "DB_USER=root" -e "DB_PASSWORD=coscup_z>b" -p :80 philipz/wordpress:hhvm
+    docker run -d --name web_1 --link db_1:db_1 -e "DB_USER=root" -e "DB_PASSWORD=coscup_z>b" -p :80 philipz/nginx-hhvm-wordpress
