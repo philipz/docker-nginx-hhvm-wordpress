@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y hhvm
 ADD ./nginx-site.conf /etc/nginx/sites-available/default
 
 # Install Wordpress
-ADD http://tw.wordpress.org/wordpress-3.9.1-zh_TW.tar.gz /usr/share/nginx/latest.tar.gz
+ADD http://tw.wordpress.org/wordpress-4.0.1-zh_TW.tar.gz /usr/share/nginx/latest.tar.gz
 RUN cd /usr/share/nginx/ && tar xvf latest.tar.gz && rm latest.tar.gz
 RUN mv /usr/share/nginx/html/5* /usr/share/nginx/wordpress
 RUN rm -rf /usr/share/nginx/www
