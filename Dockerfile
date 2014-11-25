@@ -33,7 +33,7 @@ ADD wp-config.php /usr/share/nginx/www/wp-config.php
 RUN chown -R www-data:www-data /usr/share/nginx/www
 
 # Download nginx helper plugin
-RUN curl -O `curl -i -s http://wordpress.org/plugins/nginx-helper/ | egrep -o "http://downloads.wordpress.org/plugin/[^']+"`
+RUN curl -O `curl -i -s https://wordpress.org/plugins/nginx-helper/ | egrep -o "https://downloads.wordpress.org/plugin/[^']+"`
 RUN unzip -o nginx-helper.*.zip -d /usr/share/nginx/www/wp-content/plugins
 RUN chown -R www-data:www-data /usr/share/nginx/www/wp-content/plugins/nginx-helper
 
