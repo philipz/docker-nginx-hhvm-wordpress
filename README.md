@@ -1,4 +1,4 @@
-docker-nginx-hhvm-wordpress
+docker-nginx-hhvm-wordpress [![Docker repo](http://img.shields.io/badge/docker-repo-blue.svg)](https://registry.hub.docker.com/u/philipz/nginx-hhvm-wordpress/)
 ===========================
 ##Reference
 
