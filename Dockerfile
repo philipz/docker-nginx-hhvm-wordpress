@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # Basic Requirements
-RUN apt-get -y install nginx php5-mysql php-apc curl unzip
+RUN apt-get -y install nginx php5-mysql php-apc php5-fpm curl unzip
 
 # Wordpress Requirements
 RUN apt-get -y install php5-curl php5-gd php5-intl php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-ming php5-ps php5-pspell php5-recode php5-sqlite php5-tidy php5-xmlrpc php5-xsl
@@ -22,6 +22,9 @@ RUN apt-get update && apt-get install -y hhvm
 
 # nginx site conf
 ADD ./nginx-site.conf /etc/nginx/sites-available/default
+
+# hhvm fallback to php
+ADD ./hhvm-with-fallback.conf /etc/nginx/
 
 # Install Wordpress
 ADD WordPress/ /usr/share/nginx/www
