@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.11
+FROM phusion/baseimage
 MAINTAINER Philipz <philipzheng@gmail.com>
 
 RUN apt-get update
