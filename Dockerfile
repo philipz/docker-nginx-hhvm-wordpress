@@ -1,11 +1,16 @@
 FROM phusion/baseimage:0.9.11
 MAINTAINER Philipz <philipzheng@gmail.com>
 
+# Pre config Nginx Repo
+RUN curl -o nginx.key http://nginx.org/packages/keys/nginx_signing.key && \
+    cat nginx.key | apt-key add -
+RUN echo deb http://nginx.org/packages/ubuntu/ trusty nginx | tee /etc/apt/sources.list.d/nginx.list && \
+    echo deb-src http://nginx.org/packages/ubuntu/ trusty nginx >> /etc/apt/sources.list.d/nginx.list
 RUN apt-get update
 RUN apt-get -y upgrade
 
 # Basic Requirements
-RUN apt-get -y install nginx php5-mysql php-apc curl unzip
+RUN apt-get -y install nginx php5-mysql php-apc unzip
 
 # Wordpress Requirements
 RUN apt-get -y install php5-curl php5-gd php5-intl php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-ming php5-ps php5-pspell php5-recode php5-sqlite php5-tidy php5-xmlrpc php5-xsl
@@ -21,17 +26,9 @@ RUN echo deb http://dl.hhvm.com/ubuntu trusty main | sudo tee /etc/apt/sources.l
 RUN apt-get update && apt-get install -y hhvm
 
 # nginx site conf
-ADD ./nginx-site.conf /etc/nginx/sites-available/default
-
-# Install Wordpress
-ADD WordPress/ /usr/share/nginx/www
-ADD wp-config.php /usr/share/nginx/www/wp-config.php
+ADD ./nginx-site.conf /etc/nginx/conf.d/default.conf
+RUN mkdir /usr/share/nginx/www
 RUN chown -R www-data:www-data /usr/share/nginx/www
-
-# Download nginx helper plugin
-RUN curl -O `curl -i -s https://wordpress.org/plugins/nginx-helper/ | egrep -o "https://downloads.wordpress.org/plugin/[^']+"`
-RUN unzip -o nginx-helper.*.zip -d /usr/share/nginx/www/wp-content/plugins
-RUN chown -R www-data:www-data /usr/share/nginx/www/wp-content/plugins/nginx-helper
 
 RUN mkdir /etc/service/nginx
 ADD nginx.sh /etc/service/nginx/run
