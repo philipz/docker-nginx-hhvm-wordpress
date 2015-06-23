@@ -1,4 +1,0 @@
-[submodule "WordPress"]
-	path = WordPress
-	url = https://github.com/WordPress/WordPress
-	tag = 4.1.1
