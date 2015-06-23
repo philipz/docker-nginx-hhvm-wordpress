@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.11
+FROM phusion/baseimage:0.9.16
 MAINTAINER Philipz <philipzheng@gmail.com>
 
 # Pre config Nginx Repo
