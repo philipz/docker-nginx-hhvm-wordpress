@@ -39,8 +39,19 @@ if( strlen(getenv("DB_HOST")) > 0 ) {
   define('DB_HOST', (getenv("DB_1_PORT_3306_TCP_ADDR") . ":" . getenv("DB_1_PORT_3306_TCP_PORT")));
 }
 
+/** Site Host **/
+if( strlen(getenv("WP_HOME")) > 0 ) {
+  define('WP_HOME', getenv('WP_HOME'));
+}
+if( strlen(getenv("WP_SITEURL")) > 0 ) {
+  define('WP_SITEURL', getenv('WP_SITEURL'));
+}
+
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
+
+/** Use Direct Write so we dont need FTP */
+define('FS_METHOD', 'direct');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
@@ -74,7 +85,12 @@ define('NONCE_SALT',       'eecaequeil0pei1egequai3Aghooluf9eighuj2Chaheo4uethae
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'wp_';
+ 
+if( strlen(getenv("DB_TABLE_PREFIX")) > 0 ) {
+   $table_prefix  = getenv("DB_TABLE_PREFIX");
+ } else {
+   $table_prefix  = 'wp_';
+ }
 
 /**
  * WordPress Localized Language, defaults to English.
